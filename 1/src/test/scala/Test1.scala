@@ -1,9 +1,9 @@
+import org.scalatest.Assertions
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
+import scala.language.implicitConversions
+import scala.language.postfixOps
 
-import org.junit.Test
-import org.junit.Assert._
-
-class Test1 {
-  @Test def t1(): Unit = {
-    assertEquals("I was compiled by dotty :)", Main.msg)
-  }
-}
+class Test1 extends AnyFlatSpec with Matchers with Assertions:
+    "Main.msg" should "be a dotty welcome message" in:
+        Main.msg should equal("I was compiled by dotty :)")

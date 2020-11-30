@@ -1,12 +1,16 @@
-val dottyVersion = "3.0.0-M2"
+val dottyVersion = "0.27.0-RC1"
+
+Global / onChangedBuildSource := ReloadOnSourceChanges
 
 lazy val root = project
   .in(file("."))
   .settings(
-    name := "dotty-simple",
+    name := "1",
     version := "0.1.0",
 
     scalaVersion := dottyVersion,
+    scalacOptions +=  "-Yindent-colons",
 
-    libraryDependencies += "com.novocode" % "junit-interface" % "0.11" % "test"
+    libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.2" % Test
+
   )
