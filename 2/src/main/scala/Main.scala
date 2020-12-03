@@ -1,5 +1,9 @@
 import scala.io.Source
 import parsley._
+import parsley.Char.{char, letter}
+import parsley.Combinator.some
+import parsley.Implicits.{charLift, stringLift}
+import scala.language.implicitConversions
 
 // A very Haskell solution:
 object Main:
@@ -12,11 +16,11 @@ object Main:
 
     // Parser
     val nat: Parsley[Int] = TokenParser(LanguageDef.plain).natural
-    val pass: Parsley[String] = Combinator.some(Char.letter).map(_.mkString(""))
+    val pass: Parsley[String] = some(letter).map(_.mkString(""))
     val parseScheme: Parsley[PasswordScheme] =
-      (nat <* Char.char('-')).map(mkPS)
-      <*> (nat <* Char.char(' '))
-      <*> (Char.letter <* Char.string(": "))
+      (nat <* '-').map(mkPS)
+      <*> (nat <* ' ')
+      <*> (letter <* ": ")
       <*> pass
 
     // output solution
