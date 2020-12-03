@@ -8,13 +8,18 @@ object Main:
     val map = bufferedSource.getLines.toList
     bufferedSource.close
 
-    println(sleigh(3,1,map))
+    val slope1 = sleigh(1,1,map)
+    val slope2 = sleigh(3,1,map)
+    val slope3 = sleigh(5,1,map)
+    val slope4 = sleigh(7,1,map)
+    val slope5 = sleigh(1,2,map)
 
-def sleigh(along: Int, down: Int, map: List[String]) : Int =
+    println(slope1 * slope2 * slope3 * slope4 * slope5)
+
+def sleigh(along: Int, down: Int, map: List[String]) : BigInt =
   var x = 0
   var y = 0
   var trees = 0
-  println(map.length-1)
   while (y <= map.length-1)
     val col = (x % 31)
     val row = y
