@@ -13,10 +13,15 @@ object Main:
     val customs = bufferedSource.mkString
     bufferedSource.close
     val gs = runParser(groups, customs).toOption.get
-    println(count(gs))
+    println(count2(gs))
 
 def count(gs : List[List[List[Char]]]): Int =
   gs.map(_.flatten.distinct.length).sum
+
+def count2(gs : List[List[List[Char]]]): Int =
+  gs.map(_.foldRight(('a' to 'z').toSet)(_.toSet.intersect(_))
+          .size)
+    .sum
 
 // parser - for separating people and groups
 
