@@ -33,3 +33,7 @@ classes/
 
 # Bloop
 .bsp
+
+#Haskell stuff
+*.o
+*.hi
